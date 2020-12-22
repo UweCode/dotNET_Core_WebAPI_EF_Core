@@ -18,3 +18,6 @@ C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\staticwebassets\Udemy_NetCo
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.dll
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.pdb
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.genruntimeconfig.cache
+C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.csproj.CopyComplete

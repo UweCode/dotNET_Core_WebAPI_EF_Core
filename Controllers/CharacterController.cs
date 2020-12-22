@@ -4,6 +4,7 @@ using Udemy_NetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Udemy_NetCore.Services.CharacterService;
 using System.Threading.Tasks;
+using Udemy_NetCore.Dtos.Character;
 
 namespace Udemy_NetCore.Controllers
 {
@@ -32,7 +33,7 @@ namespace Udemy_NetCore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCharacter(Character newCharacter)
+        public async Task<IActionResult> AddCharacter(AddCharacterDto newCharacter)
         {
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
