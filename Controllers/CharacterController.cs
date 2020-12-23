@@ -4,6 +4,7 @@ using Udemy_NetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Udemy_NetCore.Services.CharacterService;
 using System.Threading.Tasks;
+using Udemy_NetCore.Dtos.Character;
 
 namespace Udemy_NetCore.Controllers
 {
@@ -32,15 +33,31 @@ namespace Udemy_NetCore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCharacter(Character newCharacter)
+        public async Task<IActionResult> AddCharacter(AddCharacterDto newCharacter)
         {
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
 
-        //        [HttpDelete]
-        //        public IActionResult RemoveCharacter(Character character)
-        //        {
-        //            return characters.Remove(character) ?  Ok() : BadRequest();
-        //        }
+        [HttpPut]
+        public  async Task<IActionResult> UpdateCharacter(UpdateCharacterDto updatedCharacter)
+        {
+            ServiceResponse<GetCharacterDto> response = await _characterService.UpdateCharacter(updatedCharacter);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            ServiceResponse<List<GetCharacterDto>> response = await _characterService.DeleteCharacter(id);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }
