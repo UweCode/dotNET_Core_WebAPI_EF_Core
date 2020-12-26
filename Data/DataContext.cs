@@ -3,9 +3,9 @@ using Udemy_NetCore.Models;
 
 namespace Udemy_NetCore.Data
 {
-    public class DataContaxt : DbContext
+    public class DataContext : DbContext
     {
-        public DataContaxt(DbContextOptions<DataContaxt> options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             
         }
