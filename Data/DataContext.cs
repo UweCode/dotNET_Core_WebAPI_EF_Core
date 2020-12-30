@@ -12,5 +12,6 @@ namespace Udemy_NetCore.Data
 
         // always: representation of Model in db, you have to add a database set of this model 
         public DbSet<Character> Characters { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
