@@ -7,7 +7,6 @@ C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Udemy_NetCore.runtimeconfig
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Udemy_NetCore.runtimeconfig.dev.json
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Udemy_NetCore.dll
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Udemy_NetCore.pdb
-C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.csprojAssemblyReference.cache
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.AssemblyInfoInputs.cache
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.AssemblyInfo.cs
 C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.csproj.CoreCompileInputs.cache
@@ -63,3 +62,4 @@ C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandar
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Development\Udemy_NetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Development\Udemy_NetCore\obj\Debug\netcoreapp3.1\Udemy_NetCore.csprojAssemblyReference.cache
