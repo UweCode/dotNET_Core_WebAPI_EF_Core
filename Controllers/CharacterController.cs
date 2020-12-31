@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
-using Udemy_NetCore.Models;
-using Microsoft.AspNetCore.Mvc;
-using Udemy_NetCore.Services.CharacterService;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Udemy_NetCore.Models;
+using Udemy_NetCore.Services.CharacterService;
 using Udemy_NetCore.Dtos.Character;
 
 namespace Udemy_NetCore.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CharacterController : ControllerBase
@@ -17,13 +20,14 @@ namespace Udemy_NetCore.Controllers
         public CharacterController(ICharacterService characterService)
         {
             _characterService = characterService;
-
         }
 
+        // [AllowAnonymous]
         [HttpGet("GetAll")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _characterService.GetAllCharacters());
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            return Ok(await _characterService.GetAllCharacters(userId));
         }
 
         [HttpGet("{id}")]
