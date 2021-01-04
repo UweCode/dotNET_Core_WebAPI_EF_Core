@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Udemy_NetCore.Data;
 
 namespace Udemy_NetCore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210102223129_Weapon")]
+    partial class Weapon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,39 +54,6 @@ namespace Udemy_NetCore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Characters");
-                });
-
-            modelBuilder.Entity("Udemy_NetCore.Models.CharacterSkill", b =>
-                {
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CharacterId", "SkillId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("CharacterSkill");
-                });
-
-            modelBuilder.Entity("Udemy_NetCore.Models.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("Udemy_NetCore.Models.User", b =>
@@ -141,25 +110,6 @@ namespace Udemy_NetCore.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Udemy_NetCore.Models.CharacterSkill", b =>
-                {
-                    b.HasOne("Udemy_NetCore.Models.Character", "Character")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Udemy_NetCore.Models.Skill", "Skill")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("Udemy_NetCore.Models.Weapon", b =>
                 {
                     b.HasOne("Udemy_NetCore.Models.Character", "Character")
@@ -173,14 +123,7 @@ namespace Udemy_NetCore.Migrations
 
             modelBuilder.Entity("Udemy_NetCore.Models.Character", b =>
                 {
-                    b.Navigation("CharacterSkills");
-
                     b.Navigation("Weapon");
-                });
-
-            modelBuilder.Entity("Udemy_NetCore.Models.Skill", b =>
-                {
-                    b.Navigation("CharacterSkills");
                 });
 
             modelBuilder.Entity("Udemy_NetCore.Models.User", b =>

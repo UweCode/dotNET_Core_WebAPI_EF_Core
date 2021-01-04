@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,8 @@ using Microsoft.IdentityModel;
 using Microsoft.IdentityModel.Tokens;
 using Udemy_NetCore.Data;
 using Udemy_NetCore.Services.CharacterService;
+using Udemy_NetCore.Services.WeaponService;
+using Udemy_NetCore.Services.CharacterSkillService;
 
 namespace Udemy_NetCore
 {
@@ -50,6 +53,9 @@ namespace Udemy_NetCore
                     ValidateAudience = false
                 };
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IWeaponService, WeaponService>();
+            services.AddScoped<ICharacterSkillService, CharacterSkillService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
