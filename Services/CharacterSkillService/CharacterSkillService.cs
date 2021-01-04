@@ -34,6 +34,7 @@ namespace Udemy_NetCore.Services.CharacterSkillService
                     .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
                     .FirstOrDefaultAsync(c => c.Id == newCharacterSkill.CharacterId &&
                     c.User.Id == int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                
                 if (character == null)
                 {
                     response.Success = false;
@@ -43,6 +44,7 @@ namespace Udemy_NetCore.Services.CharacterSkillService
 
                 Skill skill = await _context.Skills
                     .FirstOrDefaultAsync(s => s.Id == newCharacterSkill.SkillId);
+                
                 if (skill == null)
                 {
                     response.Success = false;
@@ -57,6 +59,9 @@ namespace Udemy_NetCore.Services.CharacterSkillService
                 };
 
                 await _context.CharacterSkills.AddAsync(characterSkill);
+                await _context.SaveChangesAsync();
+
+                response.Data = _mapper.Map<GetCharacterDto>(character);
             }
             catch (Exception ex) {
                 response.Success = false;

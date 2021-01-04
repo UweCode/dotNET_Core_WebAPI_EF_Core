@@ -19,7 +19,7 @@ namespace Udemy_NetCore.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddCharacterSkill(AddCharacterSkillDto newCharacterSkill)
+        public async Task<IActionResult> AddCharacterSkill(AddCharacterSkillDto newCharacterSkill)
         {
             return Ok(await _characterSkillService.AddCharacterSkill(newCharacterSkill));
         }
