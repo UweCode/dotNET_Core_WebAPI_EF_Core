@@ -9,6 +9,5 @@ namespace Udemy_NetCore.Models
         public byte[] PaswordHash { get; set; }
         public byte[] PaswordSalt { get; set; }
         public List<Character> Characters { get; set; }
-
     }
 }

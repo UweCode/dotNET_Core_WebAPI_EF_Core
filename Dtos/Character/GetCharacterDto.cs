@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Udemy_NetCore.Dtos.Weapon;
+using Udemy_NetCore.Dtos.Skill;
 using Udemy_NetCore.Models;
 
 namespace Udemy_NetCore.Dtos.Character
@@ -11,5 +14,7 @@ namespace Udemy_NetCore.Dtos.Character
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Knight;
+        public GetWeaponDto Weapon { get; set; }
+        public List<GetSkillDto> Skills { get; set; }
     }
 }
