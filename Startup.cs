@@ -21,6 +21,7 @@ using Udemy_NetCore.Data;
 using Udemy_NetCore.Services.CharacterService;
 using Udemy_NetCore.Services.WeaponService;
 using Udemy_NetCore.Services.CharacterSkillService;
+using Udemy_NetCore.Services.FightService;
 
 namespace Udemy_NetCore
 {
@@ -56,6 +57,7 @@ namespace Udemy_NetCore
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<IFightService, FightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
