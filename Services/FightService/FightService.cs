@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Udemy_NetCore.Data;
 using Udemy_NetCore.Dtos.Fight;
@@ -12,8 +13,11 @@ namespace Udemy_NetCore.Services.FightService
     public class FightService : IFightService
     {
         private readonly DataContext _context;
-        public FightService(DataContext context)
+        private readonly IMapper _mapper;
+
+        public FightService(DataContext context, IMapper  mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -167,6 +171,7 @@ namespace Udemy_NetCore.Services.FightService
                         {
                             defeated = true;
                             attacker.Victories++;
+                            opponent.Defeats++;
                             response.Data.Log.Add($"{opponent.Name} has been defeated!");
                             response.Data.Log.Add($"{attacker.Name} wins with {attacker.HitPoints} HP left!");
                             break;
@@ -188,6 +193,22 @@ namespace Udemy_NetCore.Services.FightService
                 response.Success= false;
                 response.Message = ex.Message;
             }
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<HighScoreDto>>> GetHighScore()
+        {
+            List<Character> characters = await _context.Characters
+                .Where(c => c.Fights > 0)
+                .OrderByDescending(c => c.Victories)
+                .ThenBy(c => c.Defeats)
+                .ToListAsync();
+
+            var response = new ServiceResponse<List<HighScoreDto>>
+            {
+                Data = characters.Select(c => _mapper.Map<HighScoreDto>(c)).ToList()
+            };
+
             return response;
         }
     }

@@ -28,10 +28,16 @@ namespace Udemy_NetCore.Controllers
             return Ok(await _fightService.SkillAttack(request));
         }
 
-        [HttpPost("Fight")]
+        [HttpPost]
         public async Task<IActionResult> Fight(FightRequestDto request)
         {
             return Ok(await _fightService.Fight(request));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetHighScore()
+        {
+            return Ok(await _fightService.GetHighScore());
         }
     }
 }
