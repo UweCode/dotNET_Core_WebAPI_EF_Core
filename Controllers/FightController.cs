@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Udemy_NetCore.Dtos.Fight;
 using Udemy_NetCore.Services.FightService;
 
 namespace Udemy_NetCore.Controllers
@@ -12,6 +14,24 @@ namespace Udemy_NetCore.Controllers
         {
             _fightService = fightService;
 
+        }
+
+        [HttpPost("Weapon")]
+        public async Task<IActionResult> WeaponAttack(WeaponAttackDto request)
+        {
+            return Ok(await _fightService.WeaponAttack(request));
+        }
+
+        [HttpPost("Skill")]
+        public async Task<IActionResult> SkillAttack(SkillAttackDto request)
+        {
+            return Ok(await _fightService.SkillAttack(request));
+        }
+
+        [HttpPost("Fight")]
+        public async Task<IActionResult> Fight(FightRequestDto request)
+        {
+            return Ok(await _fightService.Fight(request));
         }
     }
 }
