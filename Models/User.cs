@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Udemy_NetCore.Models
 {
@@ -9,5 +10,7 @@ namespace Udemy_NetCore.Models
         public byte[] PaswordHash { get; set; }
         public byte[] PaswordSalt { get; set; }
         public List<Character> Characters { get; set; }
+        [Required]
+        public string Role { get; set; } // not nullable
     }
 }
