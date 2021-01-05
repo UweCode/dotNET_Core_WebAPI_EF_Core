@@ -167,6 +167,7 @@ namespace Udemy_NetCore.Services.FightService
                         {
                             defeated = true;
                             attacker.Victories++;
+                            opponent.Defeats++;
                             response.Data.Log.Add($"{opponent.Name} has been defeated!");
                             response.Data.Log.Add($"{attacker.Name} wins with {attacker.HitPoints} HP left!");
                             break;
