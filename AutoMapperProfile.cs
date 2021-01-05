@@ -2,6 +2,7 @@ using System.Linq;
 using AutoMapper;
 using Udemy_NetCore.Dtos.Character;
 using Udemy_NetCore.Dtos.CharacterSkill;
+using Udemy_NetCore.Dtos.Fight;
 using Udemy_NetCore.Dtos.Skill;
 using Udemy_NetCore.Dtos.Weapon;
 using Udemy_NetCore.Models;
@@ -17,6 +18,7 @@ namespace Udemy_NetCore
             CreateMap<AddCharacterDto, Character>();
             CreateMap<Weapon, GetWeaponDto>();
             CreateMap<Skill, GetSkillDto>();
+            CreateMap<Character, HighScoreDto>();
         }
     }
 }
