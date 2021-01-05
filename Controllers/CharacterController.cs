@@ -10,7 +10,7 @@ using Udemy_NetCore.Dtos.Character;
 
 namespace Udemy_NetCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Player,Admin")]
     [ApiController]
     [Route("[controller]")]
     public class CharacterController : ControllerBase
