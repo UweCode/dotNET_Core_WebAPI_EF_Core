@@ -24,13 +24,13 @@ namespace Udemy_NetCore.Data
         public async Task<ServiceResponse<string>> Login(string username, string password)
         {
             ServiceResponse<string> response = new ServiceResponse<string>();
-            User user = await _context.Users.FirstOrDefaultAsync(x => x.UsernameId.ToLower().Equals(username.ToLower()));
+            User user = await _context.Users.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(username.ToLower()));
             if(user == null)
             {
                 response.Success = false;
                 response.Message = "User not found!";  // be careful here about not returning too much information back to the user in case of an attack
             }
-            else if(!VerifyPasswordHash(password, user.PaswordHash, user.PaswordSalt))
+            else if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 response.Success = false;
                 response.Message = "Wrong Password!";  // be careful here about not returning too much information back to the user in case of an attack
@@ -46,16 +46,16 @@ namespace Udemy_NetCore.Data
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
             ServiceResponse<int> response = new ServiceResponse<int>();
-            if(await UserExists(user.UsernameId))
+            if(await UserExists(user.Username))
             {
                 response.Success = false;
                 response.Message = "User already exists.";
                 return response;
             }
-            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            Utility.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.PaswordHash = passwordHash;
-            user.PaswordSalt = passwordSalt; 
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt; 
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -65,20 +65,11 @@ namespace Udemy_NetCore.Data
 
         public async Task<bool> UserExists(string username)
         {
-            if(await _context.Users.AnyAsync(x => x.UsernameId.ToLower() == username.ToLower()))
+            if(await _context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower()))
             {
                 return true;
             }
             return false;
-        }
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
@@ -102,7 +93,7 @@ namespace Udemy_NetCore.Data
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UsernameId),
+                new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, user.Role)
             };
 

@@ -20,7 +20,7 @@ namespace Udemy_NetCore.Controllers
         public async Task<ActionResult> Register(UserRegisterDto request)
         {
             ServiceResponse<int> response = await _authRepo.Register(
-                new User { UsernameId = request.Username }, request.Password
+                new User { Username = request.Username }, request.Password
             );
             if(!response.Success)
             {
