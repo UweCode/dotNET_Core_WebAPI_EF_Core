@@ -6,9 +6,9 @@ namespace Udemy_NetCore.Models
     public class User
     {
         public int Id { get; set; }
-        public string UsernameId { get; set; }
-        public byte[] PaswordHash { get; set; }
-        public byte[] PaswordSalt { get; set; }
+        public string Username { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public List<Character> Characters { get; set; }
         [Required]
         public string Role { get; set; } // not nullable
